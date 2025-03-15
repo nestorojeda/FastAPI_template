@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "b0e7b3e2-5f3d-4b0a-8f1a-9b9b9b9b9b9b",
+		"name": "FastAPI Template",
+		"description": "A modern FastAPI template with user management and API key authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"description": "User management endpoints",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"strongpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "users", ""]
+						},
+						"description": "Create a new user and receive an API key"
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"strongpassword123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v1", "users", ""]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"id\": 1,\n    \"is_active\": true,\n    \"api_key\": \"generated-api-key-here\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/me/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "users", "me", ""]
+						},
+						"description": "Get information about the currently authenticated user"
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-Key",
+										"value": "{{api_key}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/me/",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v1", "users", "me", ""]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"id\": 1,\n    \"is_active\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/?skip=0&limit=100",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "users", ""],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Number of records to skip"
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "Maximum number of records to return"
+								}
+							]
+						},
+						"description": "List all users with pagination"
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-Key",
+										"value": "{{api_key}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/?skip=0&limit=100",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v1", "users", ""],
+									"query": [
+										{
+											"key": "skip",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n    {\n        \"username\": \"johndoe\",\n        \"email\": \"john@example.com\",\n        \"id\": 1,\n        \"is_active\": true\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "your-api-key-here",
+			"type": "string"
+		}
+	]
+} 

@@ -13,12 +13,14 @@ A modern FastAPI template with user management, API key authentication, PostgreS
 - ⚡ **Async Support** - Built with async/await
 - 🔍 **Type Checking** - Leveraging Python type hints
 - 🧪 **Testing Ready** - Prepared for pytest
+- 🎯 **Postman Collection** - Ready-to-use API collection
 
 ## Requirements
 
 - Python 3.12+
 - Docker and Docker Compose
 - PostgreSQL (if running locally)
+- Postman (for using the API collection)
 
 ## Quick Start
 
@@ -158,6 +160,28 @@ POSTGRES_DB=fastapi_db
 2. Create a new branch
 3. Make your changes
 4. Submit a pull request
+
+## Postman Collection
+
+The project includes a Postman collection for easy API testing:
+
+1. Import the following files into Postman:
+   - `FastAPI_Template.postman_collection.json` - API endpoints collection
+   - `FastAPI_Template.postman_environment.json` - Environment variables
+
+2. Select the "FastAPI Template - Local" environment in Postman
+
+3. The collection includes:
+   - Create User endpoint (POST)
+   - Get Current User endpoint (GET)
+   - List Users endpoint (GET)
+
+4. After creating a user, copy the returned API key and:
+   - Open the "FastAPI Template - Local" environment
+   - Update the `api_key` variable with your key
+   - Save the environment
+
+5. Now you can use all authenticated endpoints
 
 ## License
 
