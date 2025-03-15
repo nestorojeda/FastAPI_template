@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+env.bak/
+venv.bak/
+
+# FastAPI
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+postgres_data/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.vs/
+*.sublime-workspace
+*.sublime-project
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Alembic
+alembic/versions/*
+!alembic/versions/.gitkeep
+
+# Project specific
+sql_app.db
+.cursor/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+.python-version 
