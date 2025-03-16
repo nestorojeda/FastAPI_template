@@ -49,3 +49,7 @@ prod:
 	docker-compose -f docker-compose.prod.yml build
 	docker-compose -f docker-compose.prod.yml up -d
 	@echo "Application is running in production mode. Use 'make logs' to view logs."
+
+# Run pylint on Python code
+lint:
+	docker-compose exec api pylint app tests
