@@ -1,6 +1,6 @@
 # Makefile for managing Docker Compose commands
 
-.PHONY: build up down logs shell migrate migrate-down test lint format
+.PHONY: build up down logs shell migrate migrate-down test lint format destroy
 
 # Build the Docker images using docker-compose
 build:
@@ -41,3 +41,7 @@ lint:
 # Format code
 format:
 	docker-compose exec api black .
+
+# Destroy all containers, volumes, and networks
+destroy:
+	docker-compose down -v --remove-orphans
