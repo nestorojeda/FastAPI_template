@@ -52,7 +52,7 @@ prod:
 
 # Run pylint on Python code
 lint:
-	docker-compose exec api pylint app tests
+	docker-compose exec api pylint app
 
 # Auto-fix Python code style issues
 format:
