@@ -1,6 +1,6 @@
 # Makefile for managing Docker Compose commands
 
-.PHONY: build up down logs shell migrate migrate-down test lint format destroy
+.PHONY: build up down logs shell migrate migrate-down test lint format destroy dev prod
 
 # Build the Docker images using docker-compose
 build:
@@ -45,3 +45,18 @@ format:
 # Destroy all containers, volumes, and networks
 destroy:
 	docker-compose down -v --remove-orphans
+
+# Start the application in development mode with HMR
+dev:
+	@echo "Starting application in development mode..."
+	docker-compose -f docker-compose.dev.yml down || true
+	docker-compose -f docker-compose.dev.yml build
+	docker-compose -f docker-compose.dev.yml up
+
+# Start the application in production mode
+prod:
+	@echo "Starting application in production mode..."
+	docker-compose -f docker-compose.prod.yml down || true
+	docker-compose -f docker-compose.prod.yml build
+	docker-compose -f docker-compose.prod.yml up -d
+	@echo "Application is running in production mode. Use 'make logs' to view logs."
