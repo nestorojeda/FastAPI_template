@@ -30,18 +30,6 @@ migrate:
 migrate-down:
 	docker-compose exec api alembic downgrade -1
 
-# Run tests
-test:
-	docker-compose exec api pytest
-
-# Run linting
-lint:
-	docker-compose exec api flake8 .
-
-# Format code
-format:
-	docker-compose exec api black .
-
 # Destroy all containers, volumes, and networks
 destroy:
 	docker-compose down -v --remove-orphans

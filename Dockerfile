@@ -1,5 +1,5 @@
 # Build stage
-FROM python:3.11-slim-bullseye as build
+FROM python:3.12-slim-bookworm as build
 
 WORKDIR /app
 
