@@ -27,22 +27,22 @@ export const useUserStore = defineStore('user', {
       this.error = null
 
       try {
-        const { data, error } = await apiFetch<User & { api_key: string }>('/api/v1/users/', {
+        const response = await apiFetch<User & { api_key: string }>('/api/v1/users/', {
           method: 'POST',
           body: userData,
         })
 
-        if (error.value) {
-          throw error.value
+        if (response.error.value) {
+          throw response.error.value
         }
 
-        if (data.value) {
+        if (response.data.value) {
           const apiKey = useCookie('api_key')
-          apiKey.value = data.value.api_key
-          this.user = data.value
+          apiKey.value = response.data.value.api_key
+          this.user = response.data.value
         }
 
-        return data.value
+        return response.data.value
       } catch (err) {
         this.error = err instanceof Error ? err.message : 'An error occurred'
         throw err
@@ -57,17 +57,17 @@ export const useUserStore = defineStore('user', {
       this.error = null
 
       try {
-        const { data, error } = await apiFetch<User>('/api/v1/users/me/')
+        const response = await apiFetch<User>('/api/v1/users/me/')
 
-        if (error.value) {
-          throw error.value
+        if (response.error.value) {
+          throw response.error.value
         }
 
-        if (data.value) {
-          this.user = data.value
+        if (response.data.value) {
+          this.user = response.data.value
         }
 
-        return data.value
+        return response.data.value
       } catch (err) {
         this.error = err instanceof Error ? err.message : 'An error occurred'
         throw err
@@ -82,13 +82,13 @@ export const useUserStore = defineStore('user', {
       this.error = null
 
       try {
-        const { data, error } = await apiFetch<User[]>('/api/v1/users/')
+        const response = await apiFetch<User[]>('/api/v1/users/')
 
-        if (error.value) {
-          throw error.value
+        if (response.error.value) {
+          throw response.error.value
         }
 
-        return data.value
+        return response.data.value
       } catch (err) {
         this.error = err instanceof Error ? err.message : 'An error occurred'
         throw err

@@ -16,7 +16,6 @@ export const useApi = () => {
       baseURL: apiBase,
       ...options,
       headers,
-      immediate: false,
     })
   }
 
