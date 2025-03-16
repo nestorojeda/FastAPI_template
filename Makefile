@@ -53,3 +53,7 @@ prod:
 # Run pylint on Python code
 lint:
 	docker-compose exec api pylint app tests
+
+# Auto-fix Python code style issues
+format:
+	docker-compose exec api autopep8 --in-place --recursive --aggressive --aggressive app/
