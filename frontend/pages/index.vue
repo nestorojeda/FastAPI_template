@@ -44,11 +44,14 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+
 const userStore = useUserStore()
+const { user } = storeToRefs(userStore)
 
 // Try to get current user if API key exists
 const apiKey = useCookie('api_key')
-if (apiKey.value && !userStore.user) {
+if (apiKey.value && !user.value) {
   userStore.getCurrentUser().catch(() => {
     // If getting current user fails, clear the API key
     apiKey.value = null
