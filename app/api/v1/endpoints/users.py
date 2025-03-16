@@ -9,6 +9,7 @@ from app.db.session import get_db
 
 router = APIRouter()
 
+
 @router.post(
     "/",
     response_model=UserResponse,
@@ -47,7 +48,7 @@ async def create_user(user: UserCreate, db: Session = Depends(get_db)):
     - **username**: required, must be unique
     - **email**: required, must be unique and valid email format
     - **password**: required, will be hashed
-    
+
     Returns the created user information including the API key.
     """
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -56,10 +57,10 @@ async def create_user(user: UserCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email already registered"
         )
-    
+
     hashed_password = auth.get_password_hash(user.password)
     api_key = auth.generate_api_key()
-    
+
     db_user = User(
         username=user.username,
         email=user.email,
@@ -70,6 +71,7 @@ async def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     return db_user
+
 
 @router.get(
     "/me/",
@@ -103,10 +105,11 @@ async def create_user(user: UserCreate, db: Session = Depends(get_db)):
 async def read_user_me(current_user: User = Depends(auth.get_api_key)):
     """
     Get information about the currently authenticated user.
-    
+
     Requires API key authentication via the X-API-Key header.
     """
     return current_user
+
 
 @router.get(
     "/",
@@ -145,12 +148,12 @@ async def read_users(
 ):
     """
     Retrieve a list of all users.
-    
+
     Parameters:
     - **skip**: Number of users to skip (pagination)
     - **limit**: Maximum number of users to return
-    
+
     Requires API key authentication via the X-API-Key header.
     """
     users = db.query(User).offset(skip).limit(limit).all()
-    return users 
+    return users

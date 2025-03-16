@@ -9,14 +9,18 @@ import secrets
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 api_key_header = APIKeyHeader(name="X-API-Key")
 
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
+
 
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
 
+
 def generate_api_key() -> str:
     return secrets.token_urlsafe(32)
+
 
 async def get_api_key(
     api_key_header: str = Security(api_key_header),
@@ -24,11 +28,11 @@ async def get_api_key(
 ) -> User:
     user = db.query(User).filter(
         User.api_key == api_key_header,
-        User.is_active == True
+        User.is_active
     ).first()
     if not user:
         raise HTTPException(
             status_code=401,
             detail="Invalid API Key"
         )
-    return user 
+    return user

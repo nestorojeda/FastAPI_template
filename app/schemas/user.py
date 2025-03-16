@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 
+
 class UserBase(BaseModel):
     """
     Base User Schema with common attributes
@@ -16,6 +17,7 @@ class UserBase(BaseModel):
         description="Email address for the user, must be unique"
     )
 
+
 class UserCreate(UserBase):
     """
     Schema for creating a new user
@@ -26,6 +28,7 @@ class UserCreate(UserBase):
         example="strongpassword123",
         description="Password for the user account, minimum 8 characters"
     )
+
 
 class User(UserBase):
     """
@@ -45,6 +48,7 @@ class User(UserBase):
     class Config:
         from_attributes = True
 
+
 class UserResponse(User):
     """
     Schema for user response that includes the API key
@@ -54,6 +58,7 @@ class UserResponse(User):
         example="abcdef123456",
         description="API key for authenticating requests"
     )
+
 
 class Token(BaseModel):
     """
@@ -69,4 +74,3 @@ class Token(BaseModel):
         example="bearer",
         description="Type of the token"
     )
- 

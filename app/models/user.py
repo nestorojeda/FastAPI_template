@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from app.db.base_class import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -9,4 +10,4 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
-    api_key = Column(String, unique=True, index=True) 
+    api_key = Column(String, unique=True, index=True)
