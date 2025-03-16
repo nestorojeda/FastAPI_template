@@ -18,8 +18,8 @@ logs:
 down:
 	docker-compose down
 
-# Open a shell in a container
-shell:
+# Open a shell in the backend container
+shell-api:
 	docker-compose exec api /bin/bash
 
 # Run migrations
@@ -39,7 +39,8 @@ dev:
 	@echo "Starting application in development mode..."
 	docker-compose -f docker-compose.dev.yml down || true
 	docker-compose -f docker-compose.dev.yml build
-	docker-compose -f docker-compose.dev.yml up
+	docker-compose -f docker-compose.dev.yml up -d
+	@echo "Application is running in development mode. Use 'make logs' to view logs."
 
 # Start the application in production mode
 prod:

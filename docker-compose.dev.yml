@@ -26,6 +26,8 @@ services:
       - ./frontend:/app
       - /app/node_modules
       - /app/.nuxt
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/package-lock.json:/app/package-lock.json
     environment:
       - NUXT_PUBLIC_API_BASE=http://localhost:8000
       - NODE_ENV=development
