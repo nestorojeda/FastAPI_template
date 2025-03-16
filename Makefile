@@ -56,4 +56,4 @@ lint:
 
 # Auto-fix Python code style issues
 format:
-	docker-compose exec api autopep8 --in-place --recursive --aggressive --aggressive app/
+	docker-compose exec api autopep8 --in-place --recursive --aggressive app/
